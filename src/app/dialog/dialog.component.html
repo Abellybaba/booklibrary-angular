@@ -1,0 +1,55 @@
+<h1 mat-dialog-title><b>Add Book to Library</b></h1>
+<div mat-dialog-content>
+  <form [formGroup]="libraryForm">
+    <mat-form-field appearance="outline">
+        <mat-label>Authors Name</mat-label>
+        <input formControlName="authorsName" matInput placeholder="AuthorName" />
+        <mat-icon matSuffix>person_pin</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Book Name</mat-label>
+        <input formControlName="bookName" matInput placeholder="Book Name" />
+        <mat-icon matSuffix>book</mat-icon>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>ISBN Number</mat-label>
+        <input formControlName="ISBNnumber" matInput type="number" placeholder="ISBNnumber" />
+        <mat-icon matSuffix>format_list_numbered</mat-icon>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Book Category</mat-label>
+        <mat-select formControlName="category" placeholder="Category">
+          <mat-option value="Historical">Historical fiction</mat-option>
+          <mat-option value="Anthology">Anthology</mat-option>
+          <mat-option value="Comic">Comic</mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Choose a date</mat-label>
+      <input formControlName="date" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    
+      <label for=""><h1>Pick your book condition</h1></label>
+      
+      <mat-radio-group formControlName="condition" class="example-radio-group" name="flavors">
+        <!-- <mat-radio-button value="chocolate" checked="true">Chocolate</mat-radio-button>
+        <mat-radio-button value="vanilla">Vanilla</mat-radio-button>
+        <mat-radio-button value="strawberry">Strawberry</mat-radio-button> -->
+        <mat-radio-button class="example-radio-button"  *ngFor="let book of Bookcondition" [value]="book">
+            {{book}}
+        </mat-radio-button>
+      </mat-radio-group>
+    
+  </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addBook()">{{actionBtn}}</button>
+</div>
